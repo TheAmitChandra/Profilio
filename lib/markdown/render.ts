@@ -156,18 +156,22 @@ function renderSocialsBlock(block: Extract<ProfileBlock, { type: "socials" }>, s
   return `${heading}\n\n${links}`;
 }
 
-function renderStatsWidgetBlock(block: Extract<ProfileBlock, { type: "statsWidget" }>): string {
+function renderStatsWidgetBlock(
+  block: Extract<ProfileBlock, { type: "statsWidget" }>,
+  themeId: string,
+  colorMode: ProfileDocument["colorMode"],
+): string {
   if (block.mode === "actions-export") {
     return `![${block.widget}](./profile-${block.widget}.svg)`;
   }
-  return `![${block.widget}](/api/og/${block.widget})`;
+  return `![${block.widget}](/api/og/${themeId}?widget=${block.widget}&mode=${colorMode})`;
 }
 
 function renderCustomMarkdownBlock(block: Extract<ProfileBlock, { type: "customMarkdown" }>): string {
   return block.raw;
 }
 
-export function renderBlock(block: ProfileBlock, style: ThemeStyle): string {
+export function renderBlock(block: ProfileBlock, style: ThemeStyle, doc: ProfileDocument): string {
   switch (block.type) {
     case "header":
       return renderHeaderBlock(block);
@@ -180,7 +184,7 @@ export function renderBlock(block: ProfileBlock, style: ThemeStyle): string {
     case "socials":
       return renderSocialsBlock(block, style);
     case "statsWidget":
-      return renderStatsWidgetBlock(block);
+      return renderStatsWidgetBlock(block, doc.themeId, doc.colorMode);
     case "customMarkdown":
       return renderCustomMarkdownBlock(block);
   }
@@ -189,6 +193,6 @@ export function renderBlock(block: ProfileBlock, style: ThemeStyle): string {
 export function renderMarkdown(document: ProfileDocument): string {
   const theme = getTheme(document.themeId);
   const divider = renderDivider(theme.style.dividerStyle);
-  const sections = document.blocks.map((block) => renderBlock(block, theme.style));
+  const sections = document.blocks.map((block) => renderBlock(block, theme.style, document));
   return sections.join(divider ? `\n\n${divider}\n` : "\n\n").trim() + "\n";
 }

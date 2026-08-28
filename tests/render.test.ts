@@ -30,11 +30,11 @@ describe("renderMarkdown", () => {
     expect(markdown).toContain("img.shields.io/badge");
   });
 
-  it("points hosted stats widgets at the /api/og route", () => {
+  it("points hosted stats widgets at the themed /api/og route", () => {
     const doc = createDefaultDocument();
     doc.blocks.push({ id: "sw", type: "statsWidget", widget: "stats", mode: "hosted" });
     const markdown = renderMarkdown(doc);
-    expect(markdown).toContain("/api/og/stats");
+    expect(markdown).toContain(`/api/og/${doc.themeId}?widget=stats&mode=${doc.colorMode}`);
   });
 
   it("points actions-export stats widgets at a local svg file", () => {
