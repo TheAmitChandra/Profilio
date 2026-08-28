@@ -1,0 +1,25 @@
+[data-profilio-theme="brutalist"][data-profilio-mode="dark"] {
+  --profilio-bg: #000000;
+  --profilio-fg: #ffffff;
+  --profilio-muted: #9a9a9a;
+  --profilio-accent: #ffdd00;
+  --profilio-border: #ffffff;
+  --profilio-font-heading: "Arial Black", "Inter", sans-serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 0px;
+  --profilio-spacing-unit: 6px;
+}
+
+[data-profilio-theme="brutalist"][data-profilio-mode="light"] {
+  --profilio-bg: #ffffff;
+  --profilio-fg: #000000;
+  --profilio-muted: #4a4a4a;
+  --profilio-accent: #0057ff;
+  --profilio-border: #000000;
+  --profilio-font-heading: "Arial Black", "Inter", sans-serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 0px;
+  --profilio-spacing-unit: 6px;
+}
