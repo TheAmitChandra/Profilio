@@ -1,0 +1,25 @@
+[data-profilio-theme="minimalist"][data-profilio-mode="dark"] {
+  --profilio-bg: #0e0e10;
+  --profilio-fg: #f5f5f5;
+  --profilio-muted: #8a8a8f;
+  --profilio-accent: #ff3b30;
+  --profilio-border: #232326;
+  --profilio-font-heading: "Inter", "Helvetica Neue", sans-serif;
+  --profilio-font-body: "Inter", "Helvetica Neue", sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 16px;
+}
+
+[data-profilio-theme="minimalist"][data-profilio-mode="light"] {
+  --profilio-bg: #ffffff;
+  --profilio-fg: #111111;
+  --profilio-muted: #6b6b6f;
+  --profilio-accent: #cc2f27;
+  --profilio-border: #e5e5e5;
+  --profilio-font-heading: "Inter", "Helvetica Neue", sans-serif;
+  --profilio-font-body: "Inter", "Helvetica Neue", sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 16px;
+}
