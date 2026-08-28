@@ -1,0 +1,25 @@
+[data-profilio-theme="terminal"][data-profilio-mode="dark"] {
+  --profilio-bg: #0a0e0a;
+  --profilio-fg: #d7ffd9;
+  --profilio-muted: #5f9e6a;
+  --profilio-accent: #39ff88;
+  --profilio-border: #1d3b23;
+  --profilio-font-heading: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-body: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-mono: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-radius: 0px;
+  --profilio-spacing-unit: 8px;
+}
+
+[data-profilio-theme="terminal"][data-profilio-mode="light"] {
+  --profilio-bg: #f3fbf3;
+  --profilio-fg: #10240f;
+  --profilio-muted: #4a7a4f;
+  --profilio-accent: #1f9d4a;
+  --profilio-border: #c3ddc4;
+  --profilio-font-heading: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-body: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-mono: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-radius: 0px;
+  --profilio-spacing-unit: 8px;
+}
