@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex items-center gap-2">
-      <Select value={document.themeId} onValueChange={setTheme}>
+      <Select value={document.themeId} onValueChange={(value) => value && setTheme(value)}>
         <SelectTrigger className="w-44">
           <SelectValue />
         </SelectTrigger>
