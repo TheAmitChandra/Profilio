@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 @import "../themes/all-tokens.css";
 @import "github-markdown-css/github-markdown.css";
+@import "./markdown-preview-theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
