@@ -1,0 +1,25 @@
+[data-profilio-theme="neo-dark"][data-profilio-mode="dark"] {
+  --profilio-bg: #05060a;
+  --profilio-fg: #eef1ff;
+  --profilio-muted: #8b90b3;
+  --profilio-accent: #a855f7;
+  --profilio-border: #23263a;
+  --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 16px;
+  --profilio-spacing-unit: 10px;
+}
+
+[data-profilio-theme="neo-dark"][data-profilio-mode="light"] {
+  --profilio-bg: #f5f4ff;
+  --profilio-fg: #16162a;
+  --profilio-muted: #6b6b8f;
+  --profilio-accent: #7c3aed;
+  --profilio-border: #e2defc;
+  --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 16px;
+  --profilio-spacing-unit: 10px;
+}
