@@ -1,0 +1,25 @@
+[data-profilio-theme="editorial"][data-profilio-mode="dark"] {
+  --profilio-bg: #1b1a17;
+  --profilio-fg: #f2ede4;
+  --profilio-muted: #a89f8f;
+  --profilio-accent: #c9a227;
+  --profilio-border: #3a352c;
+  --profilio-font-heading: "Lora", "Source Serif Pro", serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 14px;
+}
+
+[data-profilio-theme="editorial"][data-profilio-mode="light"] {
+  --profilio-bg: #faf7f0;
+  --profilio-fg: #201c15;
+  --profilio-muted: #6b6152;
+  --profilio-accent: #8a6d1f;
+  --profilio-border: #e4dcc9;
+  --profilio-font-heading: "Lora", "Source Serif Pro", serif;
+  --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 14px;
+}
