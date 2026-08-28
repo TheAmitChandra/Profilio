@@ -1,0 +1,25 @@
+[data-profilio-theme="retro-computing"][data-profilio-mode="dark"] {
+  --profilio-bg: #0a0a1a;
+  --profilio-fg: #f5f5ff;
+  --profilio-muted: #8888aa;
+  --profilio-accent: #ff2e88;
+  --profilio-border: #2a2a55;
+  --profilio-font-heading: "Press Start 2P", "JetBrains Mono", monospace;
+  --profilio-font-body: "JetBrains Mono", monospace;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 8px;
+}
+
+[data-profilio-theme="retro-computing"][data-profilio-mode="light"] {
+  --profilio-bg: #eef0ff;
+  --profilio-fg: #1a1a33;
+  --profilio-muted: #55557a;
+  --profilio-accent: #b3195e;
+  --profilio-border: #c9ccee;
+  --profilio-font-heading: "Press Start 2P", "JetBrains Mono", monospace;
+  --profilio-font-body: "JetBrains Mono", monospace;
+  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-radius: 2px;
+  --profilio-spacing-unit: 8px;
+}
