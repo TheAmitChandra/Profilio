@@ -47,3 +47,8 @@ next-env.d.ts
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# agent-local notes (not part of the shipped product)
+/CLAUDE.md
+/AGENTS.md
+/DECISIONS.md
