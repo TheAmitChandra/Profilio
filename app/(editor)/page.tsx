@@ -8,6 +8,7 @@ import { LivePreview } from "@/app/(editor)/components/LivePreview";
 import { SignalCheckPanel } from "@/app/(editor)/components/SignalCheckPanel";
 import { ThemeSwitcher } from "@/app/(editor)/components/ThemeSwitcher";
 import { ExportToolbar } from "@/app/(editor)/components/ExportToolbar";
+import { GithubUsernameField } from "@/app/(editor)/components/GithubUsernameField";
 
 export default function EditorPage() {
   return (
@@ -18,6 +19,7 @@ export default function EditorPage() {
           <span className="text-sm text-muted-foreground">design your GitHub profile</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <GithubUsernameField />
           <ThemeSwitcher />
           <ExportToolbar />
         </div>
