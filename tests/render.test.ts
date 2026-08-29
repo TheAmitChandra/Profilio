@@ -23,6 +23,14 @@ describe("renderMarkdown", () => {
     expect(markdown).not.toContain("/api/banner/");
   });
 
+  it("renders a typing-effect image when bannerStyle is 'typing'", () => {
+    const doc = createDefaultDocument();
+    doc.blocks[0] = { ...doc.blocks[0], bannerStyle: "typing" } as (typeof doc.blocks)[0];
+    const markdown = renderMarkdown(doc);
+    expect(markdown).toContain("# Your Name");
+    expect(markdown).toContain(`/api/typing/${doc.themeId}?text=`);
+  });
+
   it("uses the terminal theme's prompt-style heading for section titles", () => {
     const doc = createDefaultDocument();
     doc.themeId = "terminal";
