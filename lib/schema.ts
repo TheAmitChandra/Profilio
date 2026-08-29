@@ -96,6 +96,7 @@ export const profileDocumentSchema = z.object({
   version: z.literal(1),
   themeId: z.string(),
   colorMode: z.enum(["dark", "light"]),
+  githubUsername: z.string().optional(),
   blocks: z.array(profileBlockSchema),
 });
 
