@@ -11,20 +11,21 @@
 
 ![Profilio demo](docs/screenshots/demo.gif)
 
-Profilio is a live visual canvas for building your GitHub profile `README.md` — drag-and-drop blocks, ten genuinely distinct themes (different layouts and typography, not just color swaps), an instant preview of exactly what GitHub will render, and a "Signal Check" linter that nudges you toward a focused profile instead of a badge wall.
+Profilio is a live visual canvas for building your GitHub profile `README.md` — drag-and-drop blocks, ten genuinely distinct themes (different layouts and typography, not just color swaps), an **animated wave banner and typing-effect header** rendered in your theme's own colors, real brand-colored tech badges, an instant preview of exactly what GitHub will render, and a "Signal Check" linter that nudges you toward a focused profile instead of a badge wall.
 
 ## Why Profilio
 
 Most profile-README tools fall into two camps:
 
-- **SVG-widget services** (`github-readme-stats` and friends) generate stat images but leave you to hand-assemble markdown yourself, with no editing surface at all.
-- **Form-based generators** let you fill in fields and reorder sections, but produce templated output with no real design system and no opinion about what makes a profile good.
+- **SVG-widget services** (`github-readme-stats`, `capsule-render`, `readme-typing-svg` and friends) generate individual stat images, banners, or typing effects — each its own external service, unstyled relative to each other, leaving you to hand-assemble the markdown and hope the colors don't clash.
+- **Form-based generators** let you fill in fields and reorder sections, but produce plain templated text with no visual flourish and no opinion about what makes a profile good.
 
-Neither combines a true visual editor with a design system worth using — and neither tells you when your profile has become a wall of badges nobody will read. Profilio does three things differently:
+Neither combines a true visual editor with a cohesive, themed design system. Profilio does four things differently:
 
 1. **A real canvas**, not a settings form — every block is edited inline, reordered by drag-and-drop (mouse or keyboard), with the preview updating live.
-2. **Ten themes that are actual design systems** — different heading treatments, divider styles, tech-stack and project layouts, and typography, because GitHub strips custom CSS from profile READMEs so "distinct" has to come from structure, not a color variable.
-3. **A Signal Check linter** — an 11-rule, dismissible-suggestion panel (never a blocker) that flags the patterns that make profiles read as clutter: too many competing links, a badge wall instead of grouped categories, a "passion paragraph" bio, undated "currently learning X" claims.
+2. **An animated banner header, built in-house** — the same "waving gradient banner" and "typing effect" techniques popular hand-built profiles use, except rendered from your chosen theme's own colors and fonts instead of a generic default, via `/api/banner` and `/api/typing`.
+3. **Ten themes that are actual design systems** — different heading treatments, divider styles, tech-stack and project layouts, and typography, because GitHub strips custom CSS from profile READMEs so "distinct" has to come from structure and imagery, not a color variable alone. Tech-stack badges render in each technology's real brand color and logo (`for-the-badge` style), not flat grey text.
+4. **A Signal Check linter** — an 11-rule, dismissible-suggestion panel (never a blocker) that flags the patterns that make profiles read as clutter: too many competing links, a badge wall instead of grouped categories, a "passion paragraph" bio, undated "currently learning X" claims.
 
 It also ships two ways to embed live stats, not one: a hosted SVG endpoint for convenience, and a GitHub Actions export mode that renders the same themed cards from your own authenticated workflow — so your profile doesn't break when a shared public endpoint gets rate-limited.
 
