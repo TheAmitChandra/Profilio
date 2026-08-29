@@ -21,7 +21,7 @@ export const bentoTheme: ThemeDefinition = {
       bg: "#f7f7f5",
       fg: "#161616",
       muted: "#6f6f6f",
-      accent: "#ea6b1f",
+      accent: "#b84f0d",
       border: "#e5e5e0",
       fontHeading: '"Inter", ui-sans-serif, sans-serif',
       fontBody: '"Inter", ui-sans-serif, sans-serif',
