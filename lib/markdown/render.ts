@@ -64,6 +64,12 @@ function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>, doc
     return `${avatar}<img width="100%" src="${bannerUrl}" alt="${block.name}" />`;
   }
 
+  if (block.bannerStyle === "typing") {
+    const text = encodeURIComponent(block.tagline);
+    const typingUrl = `/api/typing/${doc.themeId}?text=${text}&mode=${doc.colorMode}`;
+    return `${avatar}# ${block.name}\n<img src="${typingUrl}" alt="${block.tagline}" />`;
+  }
+
   return `${avatar}# ${block.name}\n${block.tagline}`;
 }
 
