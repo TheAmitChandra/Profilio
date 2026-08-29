@@ -52,10 +52,18 @@ function renderDivider(dividerStyle: ThemeStyle["dividerStyle"]): string {
   }
 }
 
-function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>): string {
+function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>, doc: ProfileDocument): string {
   const avatar = block.avatarUrl
     ? `<img src="${block.avatarUrl}" alt="${block.name}" width="96" align="left" style="margin-right: 16px" />\n\n`
     : "";
+
+  if (block.bannerStyle === "wave") {
+    const title = encodeURIComponent(block.name);
+    const subtitle = encodeURIComponent(block.tagline);
+    const bannerUrl = `/api/banner/${doc.themeId}?title=${title}&subtitle=${subtitle}&mode=${doc.colorMode}`;
+    return `${avatar}<img width="100%" src="${bannerUrl}" alt="${block.name}" />`;
+  }
+
   return `${avatar}# ${block.name}\n${block.tagline}`;
 }
 
@@ -171,7 +179,7 @@ function renderCustomMarkdownBlock(block: Extract<ProfileBlock, { type: "customM
 export function renderBlock(block: ProfileBlock, style: ThemeStyle, doc: ProfileDocument): string {
   switch (block.type) {
     case "header":
-      return renderHeaderBlock(block);
+      return renderHeaderBlock(block, doc);
     case "bio":
       return renderBioBlock(block, style);
     case "techStack":
