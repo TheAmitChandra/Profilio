@@ -24,7 +24,7 @@ function Stat({ label, value, tokens }: { label: string; value: string | number;
           fontVariantNumeric: "tabular-nums",
         }}
       >
-        {value}
+        {String(value)}
       </div>
       <div style={{ fontFamily: "Inter", fontSize: 13, color: tokens.muted, marginTop: 2 }}>{label}</div>
     </div>
@@ -58,17 +58,17 @@ export function buildStatsCard(
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ fontFamily: "Inter", fontWeight: 700, fontSize: 15 }}>{data.username}'s GitHub</div>
+        <div style={{ fontFamily: "Inter", fontWeight: 700, fontSize: 15 }}>{`${data.username}'s GitHub`}</div>
         <div style={{ fontFamily: "Inter", fontSize: 11, color: tokens.muted }}>{theme.name}</div>
       </div>
       {isReliable ? (
         <div style={{ display: "flex", gap: 28 }}>
           {widget === "stats" ? (
-            <>
+            <div style={{ display: "flex", gap: 28 }}>
               <Stat label="followers" value={data.followers} tokens={tokens} />
               <Stat label="public repos" value={data.publicRepos} tokens={tokens} />
               <Stat label="total stars" value={data.totalStars} tokens={tokens} />
-            </>
+            </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ fontFamily: "Inter", fontSize: 13, color: tokens.muted, marginBottom: 8 }}>
@@ -97,8 +97,7 @@ export function buildStatsCard(
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontFamily: "Inter", fontSize: 13, color: tokens.muted }}>
-            {widget === "streak" ? "Contribution streak" : "Activity graph"} needs authenticated GraphQL
-            data.
+            {`${widget === "streak" ? "Contribution streak" : "Activity graph"} needs authenticated GraphQL data.`}
           </div>
           <div style={{ fontFamily: "Inter", fontSize: 12, color: tokens.accent, marginTop: 4 }}>
             Switch this widget to &quot;actions-export&quot; mode for accurate data.
