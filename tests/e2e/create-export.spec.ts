@@ -7,9 +7,20 @@ test.beforeEach(async ({ page }) => {
   await page.reload();
 });
 
-test("editing the header updates the live preview", async ({ page }) => {
+test("editing the header updates the live preview's animated banner", async ({ page }) => {
   const nameInput = page.getByLabel("Name", { exact: true });
   await nameInput.fill("Ada Lovelace");
+
+  await expect(page.locator(".markdown-body img[alt='Ada Lovelace']")).toHaveAttribute(
+    "src",
+    /\/api\/banner\//,
+  );
+});
+
+test("turning off the animated banner falls back to a plain heading", async ({ page }) => {
+  const nameInput = page.getByLabel("Name", { exact: true });
+  await nameInput.fill("Ada Lovelace");
+  await page.getByRole("switch", { name: "Animated banner" }).click();
 
   await expect(page.locator(".markdown-body h1")).toHaveText("Ada Lovelace");
 });
