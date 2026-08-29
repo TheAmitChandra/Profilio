@@ -30,7 +30,7 @@ test("switching header style to typing effect renders the typing image", async (
   await page.getByLabel("Header style").click();
   await page.getByRole("option", { name: "Typing effect" }).click();
 
-  await expect(page.locator(".markdown-body img[alt]").last()).toHaveAttribute("src", /\/api\/typing\//);
+  await expect(page.locator('.markdown-body img[src*="/api/typing/"]')).toBeVisible();
 });
 
 test("adding a block from the library appends it to the canvas", async ({ page }) => {
