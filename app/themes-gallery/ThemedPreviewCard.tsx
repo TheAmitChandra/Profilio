@@ -2,7 +2,6 @@ import type { ProfileDocument } from "@/lib/schema";
 import type { ThemeDefinition } from "@/themes/types";
 import {
   BioBlockView,
-  HeaderBlockView,
   PinnedProjectsBlockView,
   TechStackBlockView,
 } from "@/themes/blockRenderers";
@@ -10,6 +9,10 @@ import {
 export function ThemedPreviewCard({ theme, document }: { theme: ThemeDefinition; document: ProfileDocument }) {
   const header = document.blocks.find((b) => b.type === "header");
   const bio = document.blocks.find((b) => b.type === "bio");
+  const bannerUrl =
+    header?.type === "header"
+      ? `/api/banner/${theme.id}?title=${encodeURIComponent(header.name)}&subtitle=${encodeURIComponent(header.tagline)}&mode=${document.colorMode}`
+      : null;
   const techStack = document.blocks.find((b) => b.type === "techStack");
   const pinnedProjects = document.blocks.find((b) => b.type === "pinnedProjects");
 
@@ -25,6 +28,10 @@ export function ThemedPreviewCard({ theme, document }: { theme: ThemeDefinition;
         fontFamily: "var(--profilio-font-body)",
       }}
     >
+      {bannerUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={bannerUrl} alt="" className="-m-6 mb-1 block w-[calc(100%+3rem)] max-w-none" />
+      ) : null}
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold" style={{ color: "var(--profilio-fg)" }}>
           {theme.name}
@@ -33,7 +40,6 @@ export function ThemedPreviewCard({ theme, document }: { theme: ThemeDefinition;
           {document.colorMode}
         </span>
       </div>
-      {header?.type === "header" ? <HeaderBlockView block={header} style={theme.style} /> : null}
       {bio?.type === "bio" ? <BioBlockView block={bio} /> : null}
       {techStack?.type === "techStack" ? <TechStackBlockView block={techStack} style={theme.style} /> : null}
       {pinnedProjects?.type === "pinnedProjects" ? (
