@@ -7,11 +7,30 @@ test.beforeEach(async ({ page }) => {
   await page.reload();
 });
 
-test("editing the header updates the live preview", async ({ page }) => {
+test("editing the header updates the live preview's animated banner", async ({ page }) => {
   const nameInput = page.getByLabel("Name", { exact: true });
   await nameInput.fill("Ada Lovelace");
 
+  await expect(page.locator(".markdown-body img[alt='Ada Lovelace']")).toHaveAttribute(
+    "src",
+    /\/api\/banner\//,
+  );
+});
+
+test("switching header style to plain text falls back to a plain heading", async ({ page }) => {
+  const nameInput = page.getByLabel("Name", { exact: true });
+  await nameInput.fill("Ada Lovelace");
+  await page.getByLabel("Header style").click();
+  await page.getByRole("option", { name: "Plain text" }).click();
+
   await expect(page.locator(".markdown-body h1")).toHaveText("Ada Lovelace");
+});
+
+test("switching header style to typing effect renders the typing image", async ({ page }) => {
+  await page.getByLabel("Header style").click();
+  await page.getByRole("option", { name: "Typing effect" }).click();
+
+  await expect(page.locator('.markdown-body img[src*="/api/typing/"]')).toBeVisible();
 });
 
 test("adding a block from the library appends it to the canvas", async ({ page }) => {

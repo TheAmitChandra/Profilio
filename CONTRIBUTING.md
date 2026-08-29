@@ -34,6 +34,14 @@ New themes must differ from every existing theme in **layout or typography**, no
 
 Register the theme in `themes/registry.ts`, add it to `themes/all-tokens.css`, and check it renders correctly at `/themes-gallery` in both light and dark before opening a PR. Run a contrast check on your `fg`/`muted`/`accent` colors against `bg` — WCAG AA is 4.5:1 for body text, 3:1 for large text/accents used sparingly.
 
+## Adding a badge preset
+
+Tech-stack items (`lib/markdown/badgePresets.ts`) and social platforms (`lib/markdown/socialPresets.ts`) each render as a colorful `for-the-badge` shields.io badge with a real logo when the name matches a known preset, and fall back to a plain colored badge otherwise. To add one: find the [simple-icons](https://simpleicons.org/) slug and the brand's official color, add an entry to the relevant `PRESETS` map, and add common alternate spellings to `ALIASES` (e.g. "node" and "node.js" both resolving to `nodejs`).
+
+## Extending the animated header
+
+`lib/banner/buildBannerSvg.ts` (wave banner) and `lib/banner/buildTypingSvg.ts` (typing effect) are hand-written SVG with SMIL `<animate>`/`<animateTransform>` elements — Satori (used for the stats cards) can't emit animation, so these are built as raw strings instead. Both read theme tokens for color and `themes/types.ts`'s `HeadingStyle` for a literal (non-`var()`) font stack, since the SVG is served standalone via `<img>` and has no access to this app's CSS custom properties. If you add a new header style, wire it into `HEADER_BANNER_STYLES` in `lib/schema.ts`, the `renderHeaderBlock` switch in `lib/markdown/render.ts`, and the label map in `HeaderBlockEditor.tsx`.
+
 ## Adding a Signal Check rule
 
 Rules live in `lib/linter/signalCheck.ts` as small pure functions taking a `ProfileDocument` and returning a `SignalCheckResult`. Add a unit test in `tests/signalCheck.test.ts` covering both the passing and failing case. Keep the `message` copy positive and actionable — see the existing rules for tone; this linter is meant to nudge, never block.

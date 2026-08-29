@@ -9,6 +9,36 @@ describe("renderMarkdown", () => {
     expect(markdown).toContain(doc.blocks[0].type === "header" ? doc.blocks[0].name : "");
   });
 
+  it("renders the header as an animated banner image by default", () => {
+    const doc = createDefaultDocument();
+    const markdown = renderMarkdown(doc);
+    expect(markdown).toContain(`<img width="100%" src="/api/banner/${doc.themeId}?title=`);
+  });
+
+  it("omits the floating avatar when the wave banner is active, since it would overlap it", () => {
+    const doc = createDefaultDocument();
+    doc.blocks[0] = { ...doc.blocks[0], avatarUrl: "https://example.com/me.png" } as (typeof doc.blocks)[0];
+    const markdown = renderMarkdown(doc);
+    expect(markdown).not.toContain("https://example.com/me.png");
+    expect(markdown).toContain("/api/banner/");
+  });
+
+  it("falls back to a plain heading when bannerStyle is 'none'", () => {
+    const doc = createDefaultDocument();
+    doc.blocks[0] = { ...doc.blocks[0], bannerStyle: "none" } as (typeof doc.blocks)[0];
+    const markdown = renderMarkdown(doc);
+    expect(markdown).toContain("# Your Name");
+    expect(markdown).not.toContain("/api/banner/");
+  });
+
+  it("renders a typing-effect image when bannerStyle is 'typing'", () => {
+    const doc = createDefaultDocument();
+    doc.blocks[0] = { ...doc.blocks[0], bannerStyle: "typing" } as (typeof doc.blocks)[0];
+    const markdown = renderMarkdown(doc);
+    expect(markdown).toContain("# Your Name");
+    expect(markdown).toContain(`/api/typing/${doc.themeId}?text=`);
+  });
+
   it("uses the terminal theme's prompt-style heading for section titles", () => {
     const doc = createDefaultDocument();
     doc.themeId = "terminal";

@@ -10,6 +10,7 @@ export function createDefaultBlock(type: BlockType): ProfileBlock {
         type,
         name: "Your Name",
         tagline: "What you build, in one sentence.",
+        bannerStyle: "wave",
       };
     case "bio":
       return {

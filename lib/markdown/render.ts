@@ -3,6 +3,7 @@ import { getTheme } from "@/themes/registry";
 import type { ThemeStyle } from "@/themes/types";
 import { toSmallCaps } from "@/lib/markdown/smallcaps";
 import { badgeMarkdown } from "@/lib/markdown/badges";
+import { socialBadgeMarkdown } from "@/lib/markdown/socialBadge";
 
 /**
  * GitHub strips <style> tags and most inline `style` attributes from
@@ -52,10 +53,26 @@ function renderDivider(dividerStyle: ThemeStyle["dividerStyle"]): string {
   }
 }
 
-function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>): string {
+function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>, doc: ProfileDocument): string {
   const avatar = block.avatarUrl
     ? `<img src="${block.avatarUrl}" alt="${block.name}" width="96" align="left" style="margin-right: 16px" />\n\n`
     : "";
+
+  if (block.bannerStyle === "wave") {
+    // The banner is a full-width image; a left-floated avatar above it has nothing to sit
+    // beside and just overlaps the banner instead, so it's intentionally omitted here.
+    const title = encodeURIComponent(block.name);
+    const subtitle = encodeURIComponent(block.tagline);
+    const bannerUrl = `/api/banner/${doc.themeId}?title=${title}&subtitle=${subtitle}&mode=${doc.colorMode}`;
+    return `<img width="100%" src="${bannerUrl}" alt="${block.name}" />`;
+  }
+
+  if (block.bannerStyle === "typing") {
+    const text = encodeURIComponent(block.tagline);
+    const typingUrl = `/api/typing/${doc.themeId}?text=${text}&mode=${doc.colorMode}`;
+    return `${avatar}# ${block.name}\n<img src="${typingUrl}" alt="${block.tagline}" />`;
+  }
+
   return `${avatar}# ${block.name}\n${block.tagline}`;
 }
 
@@ -150,10 +167,18 @@ function renderPinnedProjectsBlock(
 
 function renderSocialsBlock(block: Extract<ProfileBlock, { type: "socials" }>, style: ThemeStyle): string {
   const heading = renderHeading("Connect", style.headingStyle);
-  const links = block.links
-    .map((link, i) => (i === block.primaryCtaIndex ? `**[${link.platform}](${link.url})**` : `[${link.platform}](${link.url})`))
-    .join(" · ");
-  return `${heading}\n\n${links}`;
+  if (block.links.length === 0) return heading;
+
+  const badges = block.links.map((link) => socialBadgeMarkdown(link.platform, link.url));
+  const primaryIndex = block.primaryCtaIndex;
+
+  if (primaryIndex !== undefined && badges[primaryIndex]) {
+    const rest = badges.filter((_, i) => i !== primaryIndex);
+    const restLine = rest.length > 0 ? `\n\n${rest.join(" ")}` : "";
+    return `${heading}\n\n${badges[primaryIndex]}${restLine}`;
+  }
+
+  return `${heading}\n\n${badges.join(" ")}`;
 }
 
 function renderStatsWidgetBlock(block: Extract<ProfileBlock, { type: "statsWidget" }>, doc: ProfileDocument): string {
@@ -171,7 +196,7 @@ function renderCustomMarkdownBlock(block: Extract<ProfileBlock, { type: "customM
 export function renderBlock(block: ProfileBlock, style: ThemeStyle, doc: ProfileDocument): string {
   switch (block.type) {
     case "header":
-      return renderHeaderBlock(block);
+      return renderHeaderBlock(block, doc);
     case "bio":
       return renderBioBlock(block, style);
     case "techStack":

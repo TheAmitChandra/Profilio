@@ -1,5 +1,6 @@
 import type { GithubUserSummary } from "@/lib/github";
 import type { ThemeDefinition, ThemeTokens } from "@/themes/types";
+import { darken, lighten } from "@/lib/banner/color";
 
 export const CARD_WIDTH = 480;
 export const CARD_HEIGHT = 160;
@@ -40,6 +41,7 @@ export function buildStatsCard(
   const tokens = theme.tokens[mode];
   const data = summary ?? PLACEHOLDER_SUMMARY;
   const isReliable = widget === "stats" || widget === "languages";
+  const bgTo = mode === "dark" ? lighten(tokens.bg, 0.1) : darken(tokens.bg, 0.04);
 
   return (
     <div
@@ -49,7 +51,7 @@ export function buildStatsCard(
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: tokens.bg,
+        backgroundImage: `linear-gradient(135deg, ${tokens.bg}, ${bgTo})`,
         color: tokens.fg,
         padding: 24,
         borderRadius: Number.parseInt(tokens.radius, 10) || 0,

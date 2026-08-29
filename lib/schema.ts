@@ -1,11 +1,14 @@
 import { z } from "zod";
 
+export const HEADER_BANNER_STYLES = ["none", "wave", "typing"] as const;
+
 export const headerBlockSchema = z.object({
   id: z.string(),
   type: z.literal("header"),
   name: z.string(),
   tagline: z.string(),
   avatarUrl: z.string().optional(),
+  bannerStyle: z.enum(HEADER_BANNER_STYLES).optional(),
 });
 
 export const bioBlockSchema = z.object({
