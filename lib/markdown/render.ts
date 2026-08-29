@@ -3,6 +3,7 @@ import { getTheme } from "@/themes/registry";
 import type { ThemeStyle } from "@/themes/types";
 import { toSmallCaps } from "@/lib/markdown/smallcaps";
 import { badgeMarkdown } from "@/lib/markdown/badges";
+import { socialBadgeMarkdown } from "@/lib/markdown/socialBadge";
 
 /**
  * GitHub strips <style> tags and most inline `style` attributes from
@@ -166,10 +167,18 @@ function renderPinnedProjectsBlock(
 
 function renderSocialsBlock(block: Extract<ProfileBlock, { type: "socials" }>, style: ThemeStyle): string {
   const heading = renderHeading("Connect", style.headingStyle);
-  const links = block.links
-    .map((link, i) => (i === block.primaryCtaIndex ? `**[${link.platform}](${link.url})**` : `[${link.platform}](${link.url})`))
-    .join(" · ");
-  return `${heading}\n\n${links}`;
+  if (block.links.length === 0) return heading;
+
+  const badges = block.links.map((link) => socialBadgeMarkdown(link.platform, link.url));
+  const primaryIndex = block.primaryCtaIndex;
+
+  if (primaryIndex !== undefined && badges[primaryIndex]) {
+    const rest = badges.filter((_, i) => i !== primaryIndex);
+    const restLine = rest.length > 0 ? `\n\n${rest.join(" ")}` : "";
+    return `${heading}\n\n${badges[primaryIndex]}${restLine}`;
+  }
+
+  return `${heading}\n\n${badges.join(" ")}`;
 }
 
 function renderStatsWidgetBlock(block: Extract<ProfileBlock, { type: "statsWidget" }>, doc: ProfileDocument): string {
