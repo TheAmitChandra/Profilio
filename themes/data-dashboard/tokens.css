@@ -6,7 +6,7 @@
   --profilio-border: #1c2530;
   --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 8px;
   --profilio-spacing-unit: 10px;
 }
@@ -19,7 +19,7 @@
   --profilio-border: #e2e8f0;
   --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 8px;
   --profilio-spacing-unit: 10px;
 }

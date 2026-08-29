@@ -6,7 +6,7 @@
   --profilio-border: #1e2a3d;
   --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 4px;
   --profilio-spacing-unit: 10px;
   --profilio-bg-pattern: radial-gradient(circle, var(--profilio-border) 1px, transparent 1px);
@@ -21,7 +21,7 @@
   --profilio-border: #d7e0ec;
   --profilio-font-heading: "Inter", ui-sans-serif, sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 4px;
   --profilio-spacing-unit: 10px;
   --profilio-bg-pattern: radial-gradient(circle, var(--profilio-border) 1px, transparent 1px);

@@ -4,9 +4,9 @@
   --profilio-muted: #a89f8f;
   --profilio-accent: #c9a227;
   --profilio-border: #3a352c;
-  --profilio-font-heading: "Lora", "Source Serif Pro", serif;
+  --profilio-font-heading: var(--font-lora), serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 2px;
   --profilio-spacing-unit: 14px;
 }
@@ -17,9 +17,9 @@
   --profilio-muted: #6b6152;
   --profilio-accent: #8a6d1f;
   --profilio-border: #e4dcc9;
-  --profilio-font-heading: "Lora", "Source Serif Pro", serif;
+  --profilio-font-heading: var(--font-lora), serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 2px;
   --profilio-spacing-unit: 14px;
 }

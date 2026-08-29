@@ -6,7 +6,7 @@
   --profilio-border: #ffffff;
   --profilio-font-heading: "Arial Black", "Inter", sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 0px;
   --profilio-spacing-unit: 6px;
 }
@@ -19,7 +19,7 @@
   --profilio-border: #000000;
   --profilio-font-heading: "Arial Black", "Inter", sans-serif;
   --profilio-font-body: "Inter", ui-sans-serif, sans-serif;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 0px;
   --profilio-spacing-unit: 6px;
 }

@@ -4,9 +4,9 @@
   --profilio-muted: #5f9e6a;
   --profilio-accent: #39ff88;
   --profilio-border: #1d3b23;
-  --profilio-font-heading: "JetBrains Mono", "Commit Mono", monospace;
-  --profilio-font-body: "JetBrains Mono", "Commit Mono", monospace;
-  --profilio-font-mono: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-heading: var(--font-jetbrains-mono), monospace;
+  --profilio-font-body: var(--font-jetbrains-mono), monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 0px;
   --profilio-spacing-unit: 8px;
 }
@@ -17,9 +17,9 @@
   --profilio-muted: #4a7a4f;
   --profilio-accent: #1f9d4a;
   --profilio-border: #c3ddc4;
-  --profilio-font-heading: "JetBrains Mono", "Commit Mono", monospace;
-  --profilio-font-body: "JetBrains Mono", "Commit Mono", monospace;
-  --profilio-font-mono: "JetBrains Mono", "Commit Mono", monospace;
+  --profilio-font-heading: var(--font-jetbrains-mono), monospace;
+  --profilio-font-body: var(--font-jetbrains-mono), monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 0px;
   --profilio-spacing-unit: 8px;
 }

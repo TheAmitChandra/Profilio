@@ -4,9 +4,9 @@
   --profilio-muted: #8888aa;
   --profilio-accent: #ff2e88;
   --profilio-border: #2a2a55;
-  --profilio-font-heading: "Press Start 2P", "JetBrains Mono", monospace;
-  --profilio-font-body: "JetBrains Mono", monospace;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-heading: var(--font-press-start-2p), var(--font-jetbrains-mono), monospace;
+  --profilio-font-body: var(--font-jetbrains-mono), monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 2px;
   --profilio-spacing-unit: 8px;
 }
@@ -17,9 +17,9 @@
   --profilio-muted: #55557a;
   --profilio-accent: #b3195e;
   --profilio-border: #c9ccee;
-  --profilio-font-heading: "Press Start 2P", "JetBrains Mono", monospace;
-  --profilio-font-body: "JetBrains Mono", monospace;
-  --profilio-font-mono: "JetBrains Mono", monospace;
+  --profilio-font-heading: var(--font-press-start-2p), var(--font-jetbrains-mono), monospace;
+  --profilio-font-body: var(--font-jetbrains-mono), monospace;
+  --profilio-font-mono: var(--font-jetbrains-mono), monospace;
   --profilio-radius: 2px;
   --profilio-spacing-unit: 8px;
 }
