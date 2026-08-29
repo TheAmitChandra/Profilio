@@ -5,6 +5,8 @@
 [![CI](https://github.com/TheAmitChandra/Profilio/actions/workflows/ci.yml/badge.svg)](https://github.com/TheAmitChandra/Profilio/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/github/license/TheAmitChandra/Profilio)](LICENSE)
 
+**[Live demo →](https://profilio.byteblendmatrix.com)**
+
 ![Profilio demo](docs/screenshots/demo.gif)
 
 Profilio is a live visual canvas for building your GitHub profile `README.md` — drag-and-drop blocks, ten genuinely distinct themes (different layouts and typography, not just color swaps), an instant preview of exactly what GitHub will render, and a "Signal Check" linter that nudges you toward a focused profile instead of a badge wall.
@@ -25,6 +27,8 @@ Neither combines a true visual editor with a design system worth using — and n
 It also ships two ways to embed live stats, not one: a hosted SVG endpoint for convenience, and a GitHub Actions export mode that renders the same themed cards from your own authenticated workflow — so your profile doesn't break when a shared public endpoint gets rate-limited.
 
 ## Quick start
+
+Try it live at **[profilio.byteblendmatrix.com](https://profilio.byteblendmatrix.com)** — no install needed. To run it locally instead:
 
 ```bash
 git clone https://github.com/TheAmitChandra/Profilio.git
