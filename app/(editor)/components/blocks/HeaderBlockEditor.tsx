@@ -2,13 +2,25 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useProfileStore } from "@/lib/store";
-import type { HeaderBlock } from "@/lib/schema";
+import { HEADER_BANNER_STYLES, type HeaderBlock } from "@/lib/schema";
+
+const BANNER_STYLE_LABELS: Record<(typeof HEADER_BANNER_STYLES)[number], string> = {
+  none: "Plain text",
+  wave: "Animated wave banner",
+  typing: "Typing effect",
+};
 
 export function HeaderBlockEditor({ block }: { block: HeaderBlock }) {
   const updateBlock = useProfileStore((s) => s.updateBlock);
-  const bannerEnabled = block.bannerStyle === "wave";
+  const bannerStyle = block.bannerStyle ?? "none";
 
   return (
     <div className="space-y-3">
@@ -45,22 +57,33 @@ export function HeaderBlockEditor({ block }: { block: HeaderBlock }) {
           }
         />
       </div>
-      <div className="flex items-center justify-between rounded-md border border-border p-2.5">
-        <div>
-          <Label htmlFor={`${block.id}-banner`}>Animated banner</Label>
-          <p className="text-xs text-muted-foreground">
-            Renders your name and tagline as a themed, animated wave banner image instead of plain text.
-          </p>
-        </div>
-        <Switch
-          id={`${block.id}-banner`}
-          checked={bannerEnabled}
-          onCheckedChange={(checked) =>
+      <div className="space-y-1.5 rounded-md border border-border p-2.5">
+        <Label htmlFor={`${block.id}-banner`}>Header style</Label>
+        <p className="text-xs text-muted-foreground">
+          Render your name/tagline as a themed animated image instead of plain text.
+        </p>
+        <Select
+          value={bannerStyle}
+          onValueChange={(value) =>
+            value &&
             updateBlock(block.id, (b) =>
-              b.type === "header" ? { ...b, bannerStyle: checked ? "wave" : "none" } : b,
+              b.type === "header"
+                ? { ...b, bannerStyle: value as HeaderBlock["bannerStyle"] }
+                : b,
             )
           }
-        />
+        >
+          <SelectTrigger id={`${block.id}-banner`} className="w-full">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {HEADER_BANNER_STYLES.map((style) => (
+              <SelectItem key={style} value={style}>
+                {BANNER_STYLE_LABELS[style]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
