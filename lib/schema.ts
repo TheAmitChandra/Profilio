@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const HEADER_BANNER_STYLES = ["none", "wave"] as const;
+export const HEADER_BANNER_STYLES = ["none", "wave", "typing"] as const;
 
 export const headerBlockSchema = z.object({
   id: z.string(),
