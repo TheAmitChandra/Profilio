@@ -156,15 +156,12 @@ function renderSocialsBlock(block: Extract<ProfileBlock, { type: "socials" }>, s
   return `${heading}\n\n${links}`;
 }
 
-function renderStatsWidgetBlock(
-  block: Extract<ProfileBlock, { type: "statsWidget" }>,
-  themeId: string,
-  colorMode: ProfileDocument["colorMode"],
-): string {
+function renderStatsWidgetBlock(block: Extract<ProfileBlock, { type: "statsWidget" }>, doc: ProfileDocument): string {
   if (block.mode === "actions-export") {
     return `![${block.widget}](./profile-${block.widget}.svg)`;
   }
-  return `![${block.widget}](/api/og/${themeId}?widget=${block.widget}&mode=${colorMode})`;
+  const userParam = doc.githubUsername ? `&user=${encodeURIComponent(doc.githubUsername)}` : "";
+  return `![${block.widget}](/api/og/${doc.themeId}?widget=${block.widget}&mode=${doc.colorMode}${userParam})`;
 }
 
 function renderCustomMarkdownBlock(block: Extract<ProfileBlock, { type: "customMarkdown" }>): string {
@@ -184,7 +181,7 @@ export function renderBlock(block: ProfileBlock, style: ThemeStyle, doc: Profile
     case "socials":
       return renderSocialsBlock(block, style);
     case "statsWidget":
-      return renderStatsWidgetBlock(block, doc.themeId, doc.colorMode);
+      return renderStatsWidgetBlock(block, doc);
     case "customMarkdown":
       return renderCustomMarkdownBlock(block);
   }

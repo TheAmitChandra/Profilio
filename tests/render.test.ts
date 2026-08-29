@@ -37,6 +37,14 @@ describe("renderMarkdown", () => {
     expect(markdown).toContain(`/api/og/${doc.themeId}?widget=stats&mode=${doc.colorMode}`);
   });
 
+  it("includes the githubUsername as a user query param when set", () => {
+    const doc = createDefaultDocument();
+    doc.githubUsername = "octocat";
+    doc.blocks.push({ id: "sw", type: "statsWidget", widget: "stats", mode: "hosted" });
+    const markdown = renderMarkdown(doc);
+    expect(markdown).toContain("&user=octocat");
+  });
+
   it("points actions-export stats widgets at a local svg file", () => {
     const doc = createDefaultDocument();
     doc.blocks.push({ id: "sw", type: "statsWidget", widget: "streak", mode: "actions-export" });
