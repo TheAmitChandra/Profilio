@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BlockLibrary } from "@/app/(editor)/components/BlockLibrary";
@@ -64,6 +65,7 @@ export default function EditorPage() {
     <div className="flex h-dvh flex-col">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3">
         <div className="flex items-center gap-2">
+          <Image src="/logo.png" alt="" width={28} height={28} priority />
           <span className="text-lg font-bold tracking-tight">Profilio</span>
           <span className="text-sm text-muted-foreground">design your GitHub profile</span>
         </div>

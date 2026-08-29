@@ -1,3 +1,5 @@
+<img src="public/logo.png" alt="Profilio logo" width="96" />
+
 # Profilio
 
 **Design your GitHub profile like a designer, not a form-filler.**
