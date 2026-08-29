@@ -1,0 +1,51 @@
+# Profilio "actions-export" template.
+#
+# Copy this file into your own <username>/<username> profile repo (e.g. as
+# .github/workflows/profilio-stats.yml) to render your stats/streak/
+# languages/activityGraph widgets as static SVGs committed to your repo,
+# instead of embedding an <img> that points at a shared, rate-limited
+# hosted endpoint. Reference them in your README as:
+#   ![stats](./profile-stats.svg)
+#
+# Requires no secrets beyond the repo's own default GITHUB_TOKEN.
+#
+# The cron trigger is commented out so copying this file doesn't silently
+# start a scheduled job — uncomment it once this lives in your own repo.
+name: Profilio stats export
+
+on:
+  # schedule:
+  #   - cron: "17 3 * * *" # once a day; adjust to taste
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install satori
+        run: npm install satori@0.33.4 --no-save
+
+      - name: Generate stat card SVGs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILIO_GITHUB_USERNAME: ${{ github.repository_owner }}
+          # PROFILIO_ACCENT_COLOR: "#3b82f6"
+          # PROFILIO_COLOR_MODE: "dark"
+        run: node scripts/generate-stats-svgs.mjs
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add profile-*.svg
+          git diff --cached --quiet || git commit -m "chore: refresh Profilio stat cards"
+          git push
