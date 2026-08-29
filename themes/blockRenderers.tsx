@@ -56,47 +56,56 @@ export function Heading({
   children: React.ReactNode;
   style: ThemeStyle["headingStyle"];
 }) {
-  const base = "font-[var(--profilio-font-heading)]";
+  const headingFont = { fontFamily: "var(--profilio-font-heading)" };
   switch (style) {
     case "prompt":
       return (
-        <h2 className={`${base} text-lg font-bold text-[var(--profilio-accent)]`}>
+        <h2 style={headingFont} className="text-lg font-bold text-[var(--profilio-accent)]">
           <span className="text-[var(--profilio-muted)]">$ </span>
           {children}
         </h2>
       );
     case "serif":
-      return <h2 className={`${base} text-3xl font-normal tracking-tight`}>{children}</h2>;
+      return (
+        <h2 style={headingFont} className="text-3xl font-normal tracking-tight">
+          {children}
+        </h2>
+      );
     case "bordered":
       return (
         <h2
-          className={`${base} inline-block border-4 border-[var(--profilio-border)] px-3 py-1 text-2xl font-black uppercase`}
+          style={headingFont}
+          className="inline-block border-4 border-[var(--profilio-border)] px-3 py-1 text-2xl font-black uppercase"
         >
           {children}
         </h2>
       );
     case "smallcaps":
       return (
-        <h2 className={`${base} text-xs font-semibold tracking-[0.2em] text-[var(--profilio-muted)] uppercase`}>
+        <h2 style={headingFont} className="text-xs font-semibold tracking-[0.2em] text-[var(--profilio-muted)] uppercase">
           {children}
         </h2>
       );
     case "chart":
       return (
-        <h2 className={`${base} flex items-center gap-2 text-lg font-semibold`}>
+        <h2 style={headingFont} className="flex items-center gap-2 text-lg font-semibold">
           <span className="inline-block h-3 w-3 rounded-sm bg-[var(--profilio-accent)]" />
           {children}
         </h2>
       );
     case "pixel":
       return (
-        <h2 className={`${base} text-sm tracking-widest text-[var(--profilio-accent)] uppercase`}>
+        <h2 style={headingFont} className="text-sm tracking-widest text-[var(--profilio-accent)] uppercase">
           {children}
         </h2>
       );
     case "plain":
     default:
-      return <h2 className={`${base} text-xl font-semibold`}>{children}</h2>;
+      return (
+        <h2 style={headingFont} className="text-xl font-semibold">
+          {children}
+        </h2>
+      );
   }
 }
 
@@ -135,7 +144,7 @@ export function TechStackBlockView({ block, style }: { block: TechStackBlock; st
                 <td className="w-32 py-2 pr-4 align-top font-medium text-[var(--profilio-muted)]">
                   {cat.label}
                 </td>
-                <td className="py-2 font-[var(--profilio-font-mono)] tabular-nums">
+                <td className="py-2 tabular-nums" style={{ fontFamily: "var(--profilio-font-mono)" }}>
                   {cat.items.join(" · ")}
                 </td>
               </tr>
@@ -222,7 +231,10 @@ export function PinnedProjectsBlockView({ block, style }: { block: PinnedProject
               <tr key={p.name} className="border-b border-[var(--profilio-border)]">
                 <td className="py-2 pr-4 font-medium">{p.name}</td>
                 <td className="py-2 pr-4 text-[var(--profilio-muted)]">{p.description}</td>
-                <td className="py-2 text-right font-[var(--profilio-font-mono)] tabular-nums text-[var(--profilio-accent)]">
+                <td
+                  className="py-2 text-right tabular-nums text-[var(--profilio-accent)]"
+                  style={{ fontFamily: "var(--profilio-font-mono)" }}
+                >
                   {p.metric}
                 </td>
               </tr>
@@ -242,7 +254,10 @@ export function PinnedProjectsBlockView({ block, style }: { block: PinnedProject
               <div className="font-semibold">{p.name}</div>
               <p className="mt-1 text-sm text-[var(--profilio-muted)]">{p.description}</p>
               {p.metric ? (
-                <div className="mt-2 text-xs font-[var(--profilio-font-mono)] text-[var(--profilio-accent)]">
+                <div
+                  className="mt-2 text-xs text-[var(--profilio-accent)]"
+                  style={{ fontFamily: "var(--profilio-font-mono)" }}
+                >
                   {p.metric}
                 </div>
               ) : null}
@@ -272,7 +287,10 @@ export function PinnedProjectsBlockView({ block, style }: { block: PinnedProject
               <span className="font-medium">{p.name}</span>
               <span className="text-[var(--profilio-muted)]"> — {p.description}</span>
               {p.metric ? (
-                <span className="text-[var(--profilio-accent)] font-[var(--profilio-font-mono)]"> [{p.metric}]</span>
+                <span className="text-[var(--profilio-accent)]" style={{ fontFamily: "var(--profilio-font-mono)" }}>
+                  {" "}
+                  [{p.metric}]
+                </span>
               ) : null}
             </li>
           ))}
