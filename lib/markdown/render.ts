@@ -58,10 +58,12 @@ function renderHeaderBlock(block: Extract<ProfileBlock, { type: "header" }>, doc
     : "";
 
   if (block.bannerStyle === "wave") {
+    // The banner is a full-width image; a left-floated avatar above it has nothing to sit
+    // beside and just overlaps the banner instead, so it's intentionally omitted here.
     const title = encodeURIComponent(block.name);
     const subtitle = encodeURIComponent(block.tagline);
     const bannerUrl = `/api/banner/${doc.themeId}?title=${title}&subtitle=${subtitle}&mode=${doc.colorMode}`;
-    return `${avatar}<img width="100%" src="${bannerUrl}" alt="${block.name}" />`;
+    return `<img width="100%" src="${bannerUrl}" alt="${block.name}" />`;
   }
 
   if (block.bannerStyle === "typing") {
