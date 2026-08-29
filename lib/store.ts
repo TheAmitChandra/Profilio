@@ -18,6 +18,7 @@ type ProfileStore = {
   reorderBlocks: (fromIndex: number, toIndex: number) => void;
   setTheme: (themeId: string) => void;
   setColorMode: (mode: "dark" | "light") => void;
+  setGithubUsername: (username: string) => void;
   replaceDocument: (doc: ProfileDocument) => void;
   resetDocument: () => void;
 
@@ -130,6 +131,18 @@ export const useProfileStore = create<ProfileStore>((set, get) => ({
   setColorMode: (colorMode) => {
     set((state) => {
       const nextDoc: ProfileDocument = { ...state.document, colorMode };
+      persist(nextDoc);
+      return {
+        document: nextDoc,
+        past: [...state.past, state.document].slice(-MAX_HISTORY),
+        future: [],
+      };
+    });
+  },
+
+  setGithubUsername: (githubUsername) => {
+    set((state) => {
+      const nextDoc: ProfileDocument = { ...state.document, githubUsername };
       persist(nextDoc);
       return {
         document: nextDoc,
